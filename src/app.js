@@ -23,6 +23,7 @@ app.get("/products/:id", async(req, res)=>{
     const products = await manager.getProducts();
     let id = Number(req.params.id);
     let productById = products.find(product => product.id === id)
+    if (!productById) return res.send({error: 'Producto no encontrado'});
     res.send(productById);
     
 });
